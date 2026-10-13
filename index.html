@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mohammad Ameen — iOS Developer</title>
+  <meta name="description" content="Mohammad Ameen — Senior Application Engineer and iOS developer with 5+ years of experience building Swift, SwiftUI and UIKit apps across mobility, healthcare and hospitality.">
+  <meta name="author" content="Mohammad Ameen">
+  <link rel="canonical" href="https://mohammadameen.netlify.app/">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Mohammad Ameen — iOS Developer">
+  <meta property="og:description" content="Senior Application Engineer · Swift, SwiftUI, UIKit · 5+ years building iOS apps.">
+  <meta property="og:url" content="https://mohammadameen.netlify.app/">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b5cff'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Helvetica,Arial,sans-serif' font-size='28' font-weight='700' fill='white'%3EMA%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --surface-2: #f0f2f5;
+      --text: #0f1419;
+      --muted: #5b6573;
+      --border: #e3e7ec;
+      --accent: #0b5cff;
+      --accent-soft: #e8efff;
+      --accent-text: #ffffff;
+      --shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 4px 16px rgba(16, 24, 40, .06);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0d12;
+        --surface: #12161e;
+        --surface-2: #181d27;
+        --text: #e9edf3;
+        --muted: #9aa4b2;
+        --border: #232a36;
+        --accent: #5b8dff;
+        --accent-soft: #18233d;
+        --accent-text: #0b0d12;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+    .brand { font-weight: 800; color: var(--text); letter-spacing: -.01em; }
+    .brand:hover { text-decoration: none; }
+    .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+    .nav ul a { color: var(--muted); font-weight: 500; font-size: 15px; }
+    .nav ul a:hover { color: var(--text); text-decoration: none; }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 72px 0 48px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-soft); color: var(--accent);
+      font-weight: 600; font-size: 13px; padding: 6px 12px; border-radius: 999px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 3px rgba(34, 197, 94, .2); }
+    h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.08; letter-spacing: -.03em; margin: 18px 0 10px; font-weight: 800; }
+    .role { font-size: clamp(18px, 2.4vw, 22px); color: var(--muted); font-weight: 500; margin: 0 0 20px; }
+    .lead { max-width: 680px; font-size: 18px; margin: 0 0 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 15px;
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover { text-decoration: none; transform: translateY(-1px); box-shadow: var(--shadow); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 26px; color: var(--muted); font-size: 15px; }
+    .meta span, .meta a { display: inline-flex; align-items: center; gap: 6px; }
+    .meta a { color: var(--muted); }
+    .meta a:hover { color: var(--text); }
+    .meta svg { width: 16px; height: 16px; flex: none; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+    .stat b { display: block; font-size: 28px; letter-spacing: -.02em; }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 40px 0; scroll-margin-top: 70px; }
+    h2 { font-size: 26px; letter-spacing: -.02em; margin: 0 0 22px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; box-shadow: var(--shadow);
+    }
+
+    /* Experience timeline */
+    .timeline { display: grid; gap: 14px; }
+    .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
+    .job-head h3 { margin: 0; font-size: 18px; }
+    .when { color: var(--muted); font-size: 14px; font-weight: 500; white-space: nowrap; }
+    .company { color: var(--muted); margin: 2px 0 0; font-size: 15px; }
+    .promotions { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; border-left: 2px solid var(--border); }
+    .promotions li { position: relative; padding-left: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; }
+    .promotions li::before {
+      content: ""; position: absolute; left: -6px; top: 9px; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--accent);
+    }
+    .promotions li:first-child::before { background: var(--accent); }
+    .promotions strong { font-weight: 600; }
+    ul.points { margin: 14px 0 0; padding-left: 20px; }
+    ul.points li { margin: 4px 0; }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .project { display: flex; flex-direction: column; }
+    .project.featured { grid-column: 1 / -1; }
+    .project-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .project h3 { margin: 0; font-size: 18px; }
+    .tag { font-size: 13px; color: var(--muted); margin: 2px 0 0; }
+    .store {
+      display: inline-flex; align-items: center; gap: 6px; flex: none;
+      font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 10px;
+      background: var(--surface-2); color: var(--text); border: 1px solid var(--border);
+    }
+    .store:hover { text-decoration: none; border-color: var(--accent); }
+    .store svg { width: 14px; height: 14px; }
+    .project p { margin: 12px 0 0; }
+    .project ul { margin: 12px 0 0; padding-left: 20px; }
+    .project ul li { margin: 4px 0; }
+    .project ul b { font-weight: 600; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .skills h3 { margin: 0 0 12px; font-size: 15px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+    .chips li { background: var(--surface-2); border: 1px solid var(--border); padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 500; }
+
+    /* Education & interests */
+    .two { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+    .two h3 { margin: 0; font-size: 18px; }
+
+    /* Contact */
+    .contact { text-align: center; padding: 40px 24px; }
+    .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 22px; }
+    .contact .actions { justify-content: center; }
+
+    footer { color: var(--muted); font-size: 14px; text-align: center; padding: 32px 0 48px; }
+
+    @media (max-width: 720px) {
+      .nav ul { display: none; }
+      .hero { padding: 48px 0 32px; }
+      .stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+      .stat { padding: 14px; }
+      .stat b { font-size: 22px; }
+      .stat span { font-size: 12px; }
+      .projects, .skills, .two { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+    }
+
+    @media print {
+      .nav, .actions, footer { display: none; }
+      body { background: #fff; }
+      .card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" aria-label="Main">
+    <div class="wrap">
+      <a class="brand" href="#top">Mohammad Ameen</a>
+      <ul>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top">
+    <!-- ======================= Hero ======================= -->
+    <header class="hero">
+      <div class="wrap">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Available for iOS projects</span>
+        <h1>Mohammad Ameen</h1>
+        <p class="role">Senior Application Engineer · iOS Development</p>
+        <p class="lead">
+          iOS application engineer with 5+ years of experience designing, developing and maintaining
+          user-focused mobile applications in Swift and Objective-C. Experienced in code testing,
+          performance optimization and third-party integrations, with projects spanning mobility,
+          healthcare and hospitality.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="Mohammad_Ameen_CV.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download CV
+          </a>
+          <a class="btn" href="mailto:mameen079@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Email me
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/mohammad-ameen" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.83v1.54h.05c.53-1.01 1.84-2.07 3.79-2.07 4.05 0 4.8 2.66 4.8 6.12V21h-4v-4.98c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.92 1.3-1.92 2.63V21h-4V9.75Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+        <div class="meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Karachi, Pakistan
+          </span>
+          <a href="tel:+923312241955">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2.2Z"/></svg>
+            +92 331 2241955
+          </a>
+          <a href="mailto:mameen079@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            mameen079@gmail.com
+          </a>
+        </div>
+
+        <div class="stats" aria-label="At a glance">
+          <div class="stat"><b>5+</b><span>Years in iOS</span></div>
+          <div class="stat"><b>3</b><span>Apps on the App Store</span></div>
+          <div class="stat"><b>4</b><span>Companies</span></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ======================= Experience ======================= -->
+    <section id="experience">
+      <div class="wrap">
+        <h2>Experience</h2>
+        <div class="timeline">
+
+          <article class="card">
+            <div class="job-head">
+              <h3>Next Generation Innovations</h3>
+              <span class="when">Jun 2022 – Present</span>
+            </div>
+            <p class="company">Karachi, Pakistan</p>
+            <ul class="promotions">
+              <li><strong>Senior Application Engineer</strong><span class="when">Mar 2026 – Present</span></li>
+              <li><span>Application Engineer II</span><span class="when">Jan 2024 – Mar 2026</span></li>
+              <li><span>Application Engineer</span><span class="when">Jun 2022 – Jan 2024</span></li>
+            </ul>
+            <ul class="points">
+              <li>Write, test and refine application code in collaboration with project programmers.</li>
+              <li>Integrate software products and third-party libraries; manage iOS dependencies with CocoaPods.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="job-head">
+              <h3>iOS Developer</h3>
+              <span class="when">Jan 2022 – Jun 2022</span>
+            </div>
+            <p class="company">Technado Pvt. Ltd.</p>
+            <ul class="points">
+              <li>Optimized app performance and managed CocoaPods dependencies and third-party libraries.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="job-head">
+              <h3>Junior iOS Developer</h3>
+              <span class="when">Jul 2021 – Jan 2022</span>
+            </div>
+            <p class="company">NanoSoft Technologies</p>
+            <ul class="points">
+              <li>Developed iOS applications in Swift.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="job-head">
+              <h3>Junior iOS Developer</h3>
+              <span class="when">Aug 2020 – Jun 2021</span>
+            </div>
+            <p class="company">LN Technologies</p>
+            <ul class="points">
+              <li>Developed iOS applications in Swift.</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Projects ======================= -->
+    <section id="projects">
+      <div class="wrap">
+        <h2>Selected projects</h2>
+        <div class="projects">
+
+          <article class="card project featured">
+            <div class="project-head">
+              <div>
+                <h3>Zofeur — Hire a Safe Driver</h3>
+                <p class="tag">Mobility · UAE</p>
+              </div>
+              <a class="store" href="https://apps.apple.com/us/app/zofeur-hire-a-safe-driver/id1520275979" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.62c-.03-2.63 2.15-3.9 2.25-3.96-1.23-1.8-3.14-2.04-3.82-2.07-1.62-.17-3.17.96-4 .96-.83 0-2.1-.94-3.45-.91-1.77.03-3.41 1.03-4.32 2.62-1.85 3.2-.47 7.93 1.32 10.53.88 1.27 1.92 2.7 3.29 2.65 1.32-.05 1.82-.85 3.42-.85 1.6 0 2.05.85 3.44.83 1.42-.03 2.33-1.29 3.2-2.57 1.01-1.47 1.42-2.9 1.45-2.97-.03-.01-2.78-1.07-2.8-4.26ZM13.76 4.9c.73-.89 1.22-2.11 1.09-3.34-1.05.04-2.32.7-3.07 1.58-.67.78-1.27 2.03-1.11 3.23 1.17.09 2.37-.6 3.09-1.47Z"/></svg>
+                App Store
+              </a>
+            </div>
+            <p>UAE ride booking and scheduling: personal chauffeur, vehicle inspection, garage pickup/drop-off and School Runs packages.</p>
+            <ul>
+              <li><b>Payment gateways:</b> Adyen and Checkout.com card payments, Apple Pay and an in-app wallet.</li>
+              <li><b>Social sign-in:</b> Sign in with Apple, Google and Facebook.</li>
+              <li><b>Deep links:</b> Universal Links and Adjust campaign links routing users straight to the right screen.</li>
+              <li><b>Live Activities:</b> iOS Live Activities showing live ride details and progress.</li>
+            </ul>
+          </article>
+
+          <article class="card project">
+            <div class="project-head">
+              <div>
+                <h3>MedIQ Smart Healthcare</h3>
+                <p class="tag">Healthcare</p>
+              </div>
+              <a class="store" href="https://apps.apple.com/pk/app/mediq-smart-healthcare/id1510914142" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.62c-.03-2.63 2.15-3.9 2.25-3.96-1.23-1.8-3.14-2.04-3.82-2.07-1.62-.17-3.17.96-4 .96-.83 0-2.1-.94-3.45-.91-1.77.03-3.41 1.03-4.32 2.62-1.85 3.2-.47 7.93 1.32 10.53.88 1.27 1.92 2.7 3.29 2.65 1.32-.05 1.82-.85 3.42-.85 1.6 0 2.05.85 3.44.83 1.42-.03 2.33-1.29 3.2-2.57 1.01-1.47 1.42-2.9 1.45-2.97-.03-.01-2.78-1.07-2.8-4.26ZM13.76 4.9c.73-.89 1.22-2.11 1.09-3.34-1.05.04-2.32.7-3.07 1.58-.67.78-1.27 2.03-1.11 3.23 1.17.09 2.37-.6 3.09-1.47Z"/></svg>
+                App Store
+              </a>
+            </div>
+            <p>Multi-lingual healthcare app supporting connections via mobile number, clinic appointments, laboratory bookings, video/message consultations and doctor home visits.</p>
+          </article>
+
+          <article class="card project">
+            <div class="project-head">
+              <div>
+                <h3>SIRO Hotels</h3>
+                <p class="tag">Hospitality</p>
+              </div>
+              <a class="store" href="https://apps.apple.com/rs/app/siro-hotels/id6450212770" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.62c-.03-2.63 2.15-3.9 2.25-3.96-1.23-1.8-3.14-2.04-3.82-2.07-1.62-.17-3.17.96-4 .96-.83 0-2.1-.94-3.45-.91-1.77.03-3.41 1.03-4.32 2.62-1.85 3.2-.47 7.93 1.32 10.53.88 1.27 1.92 2.7 3.29 2.65 1.32-.05 1.82-.85 3.42-.85 1.6 0 2.05.85 3.44.83 1.42-.03 2.33-1.29 3.2-2.57 1.01-1.47 1.42-2.9 1.45-2.97-.03-.01-2.78-1.07-2.8-4.26ZM13.76 4.9c.73-.89 1.22-2.11 1.09-3.34-1.05.04-2.32.7-3.07 1.58-.67.78-1.27 2.03-1.11 3.23 1.17.09 2.37-.6 3.09-1.47Z"/></svg>
+                App Store
+              </a>
+            </div>
+            <p>Hotel room reservations, custom diet plans and fitness-class registration.</p>
+          </article>
+
+          <article class="card project">
+            <div class="project-head">
+              <div>
+                <h3>RideShare</h3>
+                <p class="tag">Mobility</p>
+              </div>
+            </div>
+            <p>Passenger ride booking/scheduling, driver acceptance/rejection and Stripe payment integration.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Skills ======================= -->
+    <section id="skills">
+      <div class="wrap">
+        <h2>Technical skills</h2>
+        <div class="skills">
+          <div class="card">
+            <h3>iOS development</h3>
+            <ul class="chips">
+              <li>Swift</li><li>Objective-C</li><li>SwiftUI</li><li>UIKit</li><li>CocoaPods</li><li>Live Activities</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Integrations</h3>
+            <ul class="chips">
+              <li>Adyen</li><li>Checkout.com</li><li>Apple Pay</li><li>Stripe</li><li>Sign in with Apple</li><li>Google Sign-In</li><li>Facebook Login</li><li>Universal Links</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Engineering</h3>
+            <ul class="chips">
+              <li>OOP</li><li>Code testing</li><li>Performance optimization</li><li>Third-party libraries</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Additional</h3>
+            <ul class="chips">
+              <li>Java</li><li>C</li><li>C++</li><li>HTML</li><li>CSS</li><li>Problem solving</li><li>Logic building</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Education & interests ======================= -->
+    <section id="education">
+      <div class="wrap">
+        <h2>Education &amp; interests</h2>
+        <div class="two">
+          <div class="card">
+            <div class="job-head">
+              <h3>Bachelor of Science in Computer Science (BSCS)</h3>
+              <span class="when">May 2015 – Feb 2020</span>
+            </div>
+            <p class="company">DHA Suffa University</p>
+          </div>
+          <div class="card">
+            <h3>Interests</h3>
+            <ul class="chips" style="margin-top: 12px;">
+              <li>iOS</li><li>Android</li><li>Flutter</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Contact ======================= -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="card contact">
+          <h2>Let's work together</h2>
+          <p>Have an iOS app to build or improve? I'd be happy to hear about it.</p>
+          <div class="actions">
+            <a class="btn primary" href="mailto:mameen079@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              mameen079@gmail.com
+            </a>
+            <a class="btn" href="Mohammad_Ameen_CV.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+              Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year">2026</span> Mohammad Ameen · Karachi, Pakistan</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
